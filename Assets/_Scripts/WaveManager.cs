@@ -1,10 +1,8 @@
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.Events;
 
-public class WaveManager : MonoBehaviour
+public class WaveManager : Singleton<WaveManager>
 {
-    public static WaveManager Instance;
     public UnityEvent onWaveChanged;
     
     private List<WaveSpawner> _waves;
@@ -21,18 +19,10 @@ public class WaveManager : MonoBehaviour
         get => _maxWaves;
     }
 
-    void Awake()
+    protected override void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            _waves = new List<WaveSpawner>();
-        }
-        else
-        {
-            Debug.Log("Exists another WaveManager");
-            Destroy(this);
-        }
+        base.Awake();
+        _waves = new List<WaveSpawner>();
     }
 
     public void AddWave(WaveSpawner wave)

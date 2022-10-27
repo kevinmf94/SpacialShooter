@@ -1,31 +1,46 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
 public class Weapon : MonoBehaviour
 {
-    private static readonly int Shoot = Animator.StringToHash("Shoot");
-    
     [SerializeField]
     private GameObject shootingPoint;
 
-    private Animator _animator;
-    private void Start()
+    [SerializeField]
+    private float shootRate;
+
+    [SerializeField]
+    private String layerName;
+
+    private float _lastShotTime;
+
+    public bool ShootGun()
     {
-        _animator = GetComponent<Animator>();
+        if (Time.timeScale > 0)
+        {
+            var timeSinceLastShoot = Time.time - _lastShotTime;
+            if (timeSinceLastShoot < shootRate)
+            {
+                return false;
+            }
+            
+            _lastShotTime = Time.time;
+            Invoke("FireBullet", 0.0f);
+            return true;
+        }
+
+        return false;
     }
 
-    void Update()
+    void FireBullet()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            GameObject bullet = BulletPooling.Instance.GetFirstAvailable();
-            if (bullet) {
-                bullet.transform.position = shootingPoint.transform.position;
-                bullet.transform.rotation = shootingPoint.transform.rotation;
-                bullet.layer = LayerMask.NameToLayer($"{transform.tag}Bullet");
-                bullet.SetActive(true);
-                _animator.SetTrigger(Shoot);
-            }
+        GameObject bullet = BulletPooling.Instance.GetFirstAvailable();
+        if (bullet) {
+            bullet.transform.position = shootingPoint.transform.position;
+            bullet.transform.rotation = shootingPoint.transform.rotation;
+            bullet.layer = LayerMask.NameToLayer($"{layerName}");
+            bullet.SetActive(true);
         }
     }
 }

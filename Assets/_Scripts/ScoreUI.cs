@@ -1,9 +1,11 @@
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
-public class EnemyUI : MonoBehaviour
+public class ScoreUI : MonoBehaviour
 {
-
     private TextMeshProUGUI _text;
     
     void Start()
@@ -14,6 +16,6 @@ public class EnemyUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _text.text = $"Remaining Enemies: {EnemyManager.Instance.Count}";
+        _text.text = ScoreManager.Instance.Amount.ToString();
     }
 }

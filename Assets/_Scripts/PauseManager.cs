@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PauseManager : MonoBehaviour
+public class PauseManager : Singleton<PauseManager>
 {
     private bool _pause = false;
     private void Update()
@@ -10,6 +10,8 @@ public class PauseManager : MonoBehaviour
         {
             if (_pause)
             {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
                 Time.timeScale = 1;
                 _pause = !_pause;
             }

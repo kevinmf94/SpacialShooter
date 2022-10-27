@@ -150,7 +150,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 600
-  rotationSpeed: 120
+  rotationSpeed: 90
+--- !u!114 &857285489855887656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142733011703285369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52fcce13d8d8244bb9398c18a8eb394f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2487487309882010841 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5261314400586630872, guid: c98043d57e0190845b790d7b92990bee, type: 3}
