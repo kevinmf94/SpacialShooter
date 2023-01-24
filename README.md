@@ -1,4 +1,4 @@
-# UnityMockShooter
+# SpacialShooter
 
 Game project made in unity following to learn and practice the nexts feature:
 - Understanding URP/HDRP pipelines
